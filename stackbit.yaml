@@ -6,6 +6,8 @@ uploadDir: images
 staticDir: exampleSite/static
 pagesDir: exampleSite/content
 dataDir: exampleSite
+excludePages: 
+  - 404/_index.md
 models:
   config:
     type: data
@@ -168,33 +170,22 @@ models:
         name: intro_image_hide_on_mobile
         label: Hide the intro image on mobile
         description: Hide the intro image on mobile screen sizes
-  pagenotfound:
-    type: page
-    label: '404'
-    file: 404/_index.md
-    hideContent: true
-    singleInstance: true
-    fields:
-      - type: string
-        name: title
-        label: Title
-        description: The title of the page.
   basicpage:
     type: page
     label: Basic Page
     match: '*.md'
-    exclude: _index.md
+    exclude: 
+      - _index.md
     fields:
       - type: string
         name: title
         label: Title
-        description: The title of the page.
-      - type: date
-        name: date
-        label: Date
-      - type: string
+      - type: enum
         name: layout
-        label: layout
+        label: Layout
+        options:
+          - label: Contact Page
+            value: page-contact
       - type: enum
         name: menu
         label: Menu
@@ -283,8 +274,8 @@ models:
   teams:
     type: page
     label: Team Overview
-    file: team/_index.md
     singleInstance: true
+    file: team/_index.md
     fields:
       - type: string
         name: title
